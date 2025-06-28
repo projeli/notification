@@ -15,7 +15,8 @@ public class GetPaginatedNotificationsQueryHandler(NotificationServiceReadDbCont
     {
         var notifications = database.Notifications
             .Where(n => n.UserId == request.UserId &&
-                        (request.NotificationType == null || n.Type == request.NotificationType))
+                        (request.NotificationType == null || n.Type == request.NotificationType) &&
+                        (request.Unread == false || n.IsRead == false))
             .OrderByDescending(n => n.Timestamp);
 
         var totalCount = await notifications.CountAsync(cancellationToken);

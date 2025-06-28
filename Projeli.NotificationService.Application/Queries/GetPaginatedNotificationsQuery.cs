@@ -9,6 +9,7 @@ public class GetPaginatedNotificationsQuery : IRequest<PagedResult<NotificationD
 {
     public required string UserId { get; init; }
     public required NotificationType? NotificationType { get; init; }
+    public required bool Unread { get; init; }
     public required int Page { get; init; }
     public required int PageSize { get; init; }
 }

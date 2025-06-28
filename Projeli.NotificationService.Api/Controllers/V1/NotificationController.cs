@@ -18,6 +18,7 @@ public class NotificationController(IMediator mediator) : BaseController
     [Authorize]
     public async Task<IActionResult> GetPaginatedNotifications(
         [FromQuery] NotificationType? type = null,
+        [FromQuery] bool unread = false,
         [FromQuery] int page = 1,
         [FromQuery] int pageSize = 10
     )
@@ -28,6 +29,7 @@ public class NotificationController(IMediator mediator) : BaseController
         {
             UserId = User.GetId(),
             NotificationType = type,
+            Unread = unread,
             Page = page,
             PageSize = pageSize
         };
